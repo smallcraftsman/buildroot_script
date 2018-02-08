@@ -1,6 +1,6 @@
 #!/bin/bash
-# 用于将buildroot生成的根文件系统更新到已生成的qemu-img中
-# 需要放在buildroot目录的 output/image 目录下执行
+
+TARGET_ROOTFS=~/new_workspace/sys_test/buildroot-2017.02.8/output/target/
 
 sudo mkdir -p /mnt/rootfs
 
@@ -10,7 +10,7 @@ sudo partx -u /dev/loop0
 
 sudo mount -o loop /dev/loop0p1 /mnt/rootfs
 
-sudo rsync -a --delete ../target/ /mnt/rootfs/
+sudo rsync -a --delete $TARGET_ROOTFS /mnt/rootfs/
 
 sudo chown -R root:root /mnt/rootfs
 
